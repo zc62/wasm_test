@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rust WASM Example</title>
+</head>
+<body>
+  <h1>Rust + WASM + GitHub Pages</h1>
+  <input id="name" placeholder="Your name">
+  <button id="btn">Greet</button>
+  <p id="output"></p>
+
+  <script type="module">
+    import init, { greet } from "./pkg/mywasmproject.js";
+
+    async function run() {
+      await init();
+      document.getElementById("btn").addEventListener("click", () => {
+        const name = document.getElementById("name").value;
+        document.getElementById("output").textContent = greet(name);
+      });
+    }
+
+    run();
+  </script>
+</body>
+</html>
+
