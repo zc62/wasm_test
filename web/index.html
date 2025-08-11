@@ -1,28 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Rust WASM Example</title>
+  <meta charset="utf-8" />
+  <title>Water — wasm + WebGPU</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    html,body { height:100%; margin:0; background:#111217; color:#fff; }
+    #canvas { width:100vw; height:100vh; display:block; }
+    #ui { position:absolute; left:10px; top:10px; z-index:2; background:rgba(0,0,0,0.4); padding:8px; border-radius:6px; }
+  </style>
 </head>
 <body>
-  <h1>Rust + WASM + GitHub Pages</h1>
-  <input id="name" placeholder="Your name">
-  <button id="btn">Greet</button>
-  <p id="output"></p>
+  <div id="ui">Left drag rotate • Wheel zoom • Right drag pan</div>
+  <canvas id="canvas"></canvas>
 
-  <script type="module">
-    import init, { greet } from "./pkg/mywasmproject.js";
-
-    async function run() {
-      await init();
-      document.getElementById("btn").addEventListener("click", () => {
-        const name = document.getElementById("name").value;
-        document.getElementById("output").textContent = greet(name);
-      });
-    }
-
-    run();
-  </script>
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
 
