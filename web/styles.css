@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: #0a1929;
     overflow: hidden;
 }
 
@@ -23,6 +23,11 @@ body {
     width: 100%;
     height: 100%;
     display: block;
+    cursor: grab;
+}
+
+#canvas:active {
+    cursor: grabbing;
 }
 
 #controls {
@@ -32,34 +37,106 @@ body {
     background: rgba(255, 255, 255, 0.95);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 100, 200, 0.1);
+    min-width: 280px;
+    backdrop-filter: blur(10px);
 }
 
 #controls h3 {
     margin-bottom: 10px;
-    color: #333;
+    color: #1e3c72;
+    font-size: 18px;
 }
 
 #controls p {
     color: #666;
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 15px;
+    padding: 8px;
+    background: rgba(30, 60, 114, 0.05);
+    border-radius: 5px;
+    border-left: 3px solid #2a5298;
 }
 
 #controls label {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
     color: #555;
     font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: 500;
 }
 
 #speed-slider {
     width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #e0e0e0, #2a5298);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+#speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2a5298;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+#speed-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #1e3c72;
 }
 
 #speed-value {
     font-weight: bold;
     color: #2a5298;
+    font-size: 16px;
+}
+
+#quality-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#quality-select:hover {
+    border-color: #2a5298;
+}
+
+#quality-select:focus {
+    outline: none;
+    border-color: #2a5298;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    #controls {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        min-width: auto;
+        padding: 15px;
+    }
+
+    #controls h3 {
+        font-size: 16px;
+    }
+
+    #controls p {
+        font-size: 12px;
+    }
 }

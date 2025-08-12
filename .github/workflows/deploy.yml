@@ -42,7 +42,6 @@ jobs:
           mkdir -p dist
           cp -r web/* dist/
           cp -r pkg dist/
-          cp -r shaders dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

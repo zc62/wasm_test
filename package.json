@@ -1,12 +1,12 @@
 {
-  "name": "webgpu-molecular-viz",
-  "version": "1.0.0",
-  "description": "WebGPU molecular visualization with Rust/WASM backend",
+  "name": "molecule",
+  "version": "0.1.0",
+  "description": "Molecular visualization with Rust/WASM backend",
   "scripts": {
     "build": "wasm-pack build --target web --out-dir pkg",
     "serve": "python3 -m http.server 8000"
   },
-  "keywords": ["webgpu", "molecular", "visualization", "rust", "wasm"],
+  "keywords": ["molecule", "visualization", "rust", "wasm"],
   "author": "zc62",
   "license": "MIT"
 }

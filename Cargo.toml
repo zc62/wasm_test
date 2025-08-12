@@ -1,5 +1,5 @@
 [package]
-name = "webgpu-molecular-viz"
+name = "molecule"
 version = "0.1.0"
 authors = ["zc62"]
 edition = "2021"
