@@ -35,7 +35,7 @@ jobs:
 
       - name: Build WASM
         run: |
-          wasm-pack build --target web --out-dir pkg
+          wasm-pack build --target web --release --no-opt --out-dir pkg
 
       - name: Prepare deployment
         run: |

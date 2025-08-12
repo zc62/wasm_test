@@ -1,16 +1,66 @@
 [package]
 name = "molecule"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["zc62"]
 edition = "2021"
+description = "Large-scale molecular visualization with Rust WebAssembly"
 
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
 wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
-web-sys = "0.3"
+web-sys = { version = "0.3", features = [
+  "console",
+  "Document",
+  "Element",
+  "HtmlElement",
+  "Window",
+  "Performance",
+  "PerformanceNavigation",
+  "PerformanceTiming",
+] }
+
+# Optional: Add these for better error handling and debugging
+console_error_panic_hook = { version = "0.1", optional = true }
+wee_alloc = { version = "0.4", optional = true }
+
+# Optional: For potential future SIMD optimizations
+# packed_simd = { version = "0.3", optional = true }
+
+[features]
+default = ["console_error_panic_hook"]
+
+# Enable this feature for better panic messages in development
+console_error_panic_hook = ["dep:console_error_panic_hook"]
+
+# Enable this for smaller binary size (but potentially slower)
+wee_alloc = ["dep:wee_alloc"]
 
 [profile.release]
+# Optimize for size while maintaining reasonable performance
+opt-level = "s"          # Optimize for size
+lto = true              # Enable Link Time Optimization
+codegen-units = 1       # Reduce parallel codegen for better optimization
+strip = true            # Strip debug info for smaller binary
+
+# Enable debug symbols in release for better debugging
+# debug = true
+
+[profile.dev]
+# Development optimizations
+opt-level = 1           # Some optimization for faster development builds
+debug = true            # Keep debug info
+lto = false            # Disable LTO for faster compilation
+
+# Memory optimization settings for large data
+[profile.release.package."*"]
 opt-level = "s"
-lto = true
+
+# If using wee_alloc for smaller memory footprint
+# [dependencies.wee_alloc]
+# version = "0.4.5"
+# optional = true
+#
+# [features]
+# default = ["wee_alloc"]
